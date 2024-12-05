@@ -1,7 +1,7 @@
 Aqui estão apenas os comandos necessários para rodar o código:
 
 1. **Navegar até a pasta do projeto**:
-   cd C:\Users\SeuUsuario\Documents\Projects\Robots
+   cd C:\Users\SeuUsuario\Diretório\Projects\Robots
 
 2. **Criar e ativar um ambiente virtual (opcional, mas recomendado)**:
    - **Criar o ambiente virtual**:
