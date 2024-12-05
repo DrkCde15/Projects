@@ -15,7 +15,9 @@ Aqui estão apenas os comandos necessários para rodar o código:
        source venv/bin/activate
 
 3. **Instalar as dependências**:
+   
    pip install selenium webdriver-manager
 
-4. **Executar o script Python**:
+5. **Executar o script Python**:
+   
    python robot1.py
