@@ -6,7 +6,7 @@ def baixar_video(url):
     # Definir as opções para o yt-dlp
     ydl_opts = {
         'format': 'mp4',
-        'outtmpl': r'C:\Users\Júlio César\Videos\Captures\video.mp4'  # Caminho completo para salvar o vídeo
+        'outtmpl': r'C:\Users\SeuUsuario\Videos\video.mp4'  # Caminho completo para salvar o vídeo
     }
     
     # Baixar o vídeo
