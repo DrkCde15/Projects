@@ -28,12 +28,8 @@ def main():
     try:
         # Converter a chave para o formato de bytes
         key = key_input.encode()  # Converte a chave digitada para bytes
-
-        # Verificar se a chave está no formato correto (Fernat requer bytes)
         fernet = Fernet(key)  # Isso vai lançar um erro se a chave for inválida
-
-        # Definir o diretório onde os arquivos criptografados estão localizados
-        dir = 'C:/Users/Júlio César/Documents/Projects/Ferramentas/ranswr/arquivos'  # Defina o diretório onde os arquivos criptografados estão
+        dir = 'C:/Users/Júlio César/Documents/Projects/Ferramentas/ranswr/arquivos/ranswr/arquivos'  # Defina o diretório onde os arquivos criptografados estão
         arqs = list_files(dir)
 
         # Descriptografar os arquivos
