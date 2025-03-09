@@ -122,7 +122,7 @@ def gerar_dados():
         "Signo": random.choice(signos),
         "Mãe": f"Rosângela {random.choice(['Antônia', 'Maria', 'Clara'])}",
         "Pai": f"Marcelo {random.choice(['Pedro', 'João', 'Carlos'])} Fogaca",
-        "Email": f"{random.choice(nomes).lower().replace(' ', '.')}@example.com",
+        "Email": f"{random.choice(nomes).lower().replace(' ', '.')}@gmail.com",
         "CEP": cep,
         "Endereço": endereco,
         "Bairro": bairro,
@@ -136,7 +136,7 @@ def gerar_dados():
 
 def verificar_bin(bin):
     print(f"Verificando BIN: {bin}")
-    print("Banco: Banco Exemplo")
+    print("Banco: Banco do Brasil" or "Itau" or "Caixa Economica" or "Bradesco")
     print("País: Brasil")
     print("Tipo de Cartão: Crédito")
 
@@ -191,7 +191,7 @@ def menu():
             for cartao in cartoes:
                 print(cartao)
         elif opcao == "6":
-            print("Saindo...")
+            print("Saindo, Obrigado por usar o programa!")
             break
         else:
             print("Opção inválida. Tente novamente.")
