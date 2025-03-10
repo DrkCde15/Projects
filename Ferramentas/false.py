@@ -119,8 +119,47 @@ def gerar_dados():
         "SE": ["Aracaju", "Nossa Senhora do Socorro"],
         "TO": ["Palmas", "Araguaína"]
     }
-    bairros = ["Centro", "Jardim das Flores", "Vila Nova", "Maria Rachel"]
-    enderecos = ["Rua João Patrício de Lima", "Avenida Paulista", "Rua das Flores", "Praça da Sé"]
+    bairros = [
+    "Centro", "Jardim das Flores", "Vila Nova", "Maria Rachel", "Jardim América", "Vila Mariana", "Bela Vista", 
+    "Consolação", "Moema", "Liberdade", "Pinheiros", "Santana", "Tatuapé", "Jardim Paulista", "Jardim Europa", 
+    "Lapa", "Itaim Bibi", "Morumbi", "Campo Belo", "Jabaquara", "Brooklin", "Perdizes", "Vila Olímpia", 
+    "Aclimação", "Cambuci", "Vila Madalena", "Chácara Santo Antônio", "Parque do Carmo", "Sapopemba", "Brás", 
+    "Mooca", "Butantã", "Ipiranga", "São Mateus", "Vila Prudente", "Vila Leopoldina", "Parque São Lucas", "Artur Alvim", 
+    "São Miguel Paulista", "Jardim São Paulo", "Parque Peruche", "Vila Matilde", "Cidade Ademar", "Parque da Mooca", 
+    "Barra Funda", "Vila Formosa", "Jardim São Bento", "Jardim Vila Mariana", "Capão Redondo", "Cidade Tiradentes", 
+    "Pirituba", "Freguesia do Ó", "Jaraguá", "Vila Sônia", "Cangaíba", "Jardim Bonfiglioli", "Ermelino Matarazzo", 
+    "Grajaú", "Interlagos", "Pedreira", "Sacomã", "Tremembé", "Jardim Ângela", "Itaquera", "Vila Carrão", "Vila Ema", 
+    "Cidade Patriarca", "Jardim Anália Franco", "Jardim Panorama", "Água Branca", "Rio Pequeno", "Raposo Tavares", 
+    "Vila Brasilândia", "Ponte Rasa", "Jardim Helena", "Jardim São Luís", "Vila Curuçá", "Vila Medeiros", 
+    "Jardim Avelino", "Parque Novo Mundo", "Cidade Líder", "Jardim Marajoara", "Cidade Dutra", "Vila Guarani", 
+    "Vila Clementino", "Pacaembu", "Chácara Klabin", "Parque Bristol", "Vila Diva", "Parque São Rafael", 
+    "São Domingos", "Vila Carmosina", "Vila Gomes Cardim", "Jardim Vila Galvão", "Jardim Alvorada", "Jardim Esmeralda", 
+    "Vila Matilde", "Parque Santo Antônio", "Vila Moraes", "Vila Invernada", "Vila Califórnia", "Jardim Brasil", 
+    "Jardim Aricanduva", "Parque São Jorge", "Jardim Morumbi", "Chácara Flora", "Vila Ipojuca", "Jardim Olinda"]
+
+    enderecos = [
+    "Rua João Patrício de Lima", "Avenida Paulista", "Rua das Flores", "Praça da Sé", "Rua Augusta", "Rua Oscar Freire", 
+    "Avenida Brigadeiro Luís Antônio", "Rua Bela Cintra", "Rua da Consolação", "Rua Vergueiro", "Avenida Faria Lima", 
+    "Avenida Rebouças", "Rua Teodoro Sampaio", "Rua dos Pinheiros", "Avenida Nove de Julho", "Rua Joaquim Floriano", 
+    "Avenida Juscelino Kubitschek", "Rua Bandeira Paulista", "Avenida Ibirapuera", "Rua Domingos de Morais", 
+    "Avenida Santo Amaro", "Rua Clodomiro Amazonas", "Rua Tabapuã", "Avenida Hélio Pellegrino", "Avenida Professor Francisco Morato", 
+    "Avenida Engenheiro Luiz Carlos Berrini", "Avenida Pedroso de Moraes", "Rua Maria Antônia", "Rua Cardoso de Almeida", 
+    "Rua Palestra Itália", "Rua Heitor Penteado", "Rua Lins de Vasconcelos", "Avenida Indianópolis", "Avenida Washington Luís", 
+    "Rua Antonio de Barros", "Rua Cantareira", "Avenida Cruzeiro do Sul", "Rua Voluntários da Pátria", "Rua Alfredo Pujol", 
+    "Avenida Guapira", "Avenida Cruzeiro do Sul", "Rua Celso Garcia", "Rua Silvio Romero", "Rua do Gasômetro", "Rua Taquari", 
+    "Avenida Rudge", "Avenida São João", "Rua Amaral Gurgel", "Rua dos Trilhos", "Avenida Imirim", "Rua Maria Cândida", 
+    "Avenida Itaberaba", "Rua Pio XI", "Avenida Professor Abraão de Morais", "Rua Francisco Morato", "Rua Cotoxó", 
+    "Rua Cayowaa", "Rua Traipu", "Rua Apinajés", "Rua Paulo Franco", "Avenida Jacu-Pêssego", "Rua Aricanduva", 
+    "Avenida Engenheiro Caetano Álvares", "Avenida Marechal Tito", "Rua Padre João Manuel", "Avenida Sumaré", "Rua Pompeu Loureiro", 
+    "Rua Maranhão", "Avenida Diógenes Ribeiro de Lima", "Rua Pascoal Ranieri Mazzilli", "Rua Ministro Godói", "Avenida Pompeia", 
+    "Rua Madre Cabrini", "Avenida República do Líbano", "Rua Harmonia", "Rua Girassol", "Rua Henrique Schaumann", 
+    "Avenida Tiradentes", "Avenida Braz Leme", "Rua Conselheiro Brotero", "Rua Itapura", "Rua Jaboticabal", "Rua Lucrécia Maciel", 
+    "Avenida Dr. Ricardo Jafet", "Rua Alvarenga", "Avenida Corifeu de Azevedo Marques", "Avenida Nossa Senhora do Sabará", 
+    "Rua Olívia Guedes Penteado", "Rua Alagoas", "Rua Capote Valente", "Rua Doutor Homem de Mello", "Rua Diana", 
+    "Rua Votupoca", "Avenida das Nações Unidas", "Rua Pedroso Alvarenga", "Rua Leopoldo Couto de Magalhães", 
+    "Rua João Cachoeira", "Rua Vinte e Cinco de Março", "Rua do Carmo", "Rua Piratininga", "Rua Alfredo Maia", 
+    "Rua Humberto I", "Rua José Maria Lisboa", "Rua Dr. Rafael de Barros", "Rua Rafael de Barros"]
+
     tipo_sanguineo = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 
     estado = random.choice(estados)
