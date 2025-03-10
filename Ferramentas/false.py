@@ -2,7 +2,7 @@ import random
 from datetime import datetime, timedelta
 
 def luhn(digits):
-    """Calcula o dígito verificador pelo algoritmo de Luhn"""
+    #Calcula o dígito verificador pelo algoritmo de Luhn
     sum_ = 0
     reverse_digits = digits[::-1]
     for i, d in enumerate(reverse_digits):
@@ -70,7 +70,23 @@ def gerar_telefone(estado):
     return f"({random.choice(ddd)}) {random.randint(1000, 9999)}-{random.randint(1000, 9999)}"
 
 def gerar_dados():
-    nomes = ["Rosa Pietra Sophia Fogaca", "João Silva", "Maria Oliveira", "Carlos Souza"]
+    nomes = [
+    "Rosa Pietra Sophia Fogaca", "João Silva", "Maria Oliveira", "Carlos Souza", "Ana Beatriz Martins", "Lucas Almeida", 
+    "Fernanda Pereira", "Paulo Sérgio Costa", "Mariana Gonçalves", "Gustavo Fernandes", "Clara Mendes", "Ricardo Lima", 
+    "Isabella Ribeiro", "José Barbosa", "Camila Araújo", "Felipe Duarte", "Sofia Carvalho", "Pedro Gonçalves", "Laura Nunes", 
+    "Thiago Matos", "Gabriela Rocha", "Daniel Moreira", "Julia Ferreira", "Vinicius Alves", "Lara Santos", "Matheus Ribeiro", 
+    "Luana Souza", "Henrique Teixeira", "Livia Andrade", "Rodrigo Costa", "Yasmin Almeida", "Eduardo Lima", "Alice Martins", 
+    "Rafael Pereira", "Helena Correia", "André Silva", "Sophia Machado", "Diego Mendes", "Valentina Barbosa", "Gabriel Alves", 
+    "Carolina Rocha", "Bruno Oliveira", "Beatriz Nunes", "Leonardo Azevedo", "Cecilia Fernandes", "Marcelo Almeida", "Clara Gomes", 
+    "Antonio Melo", "Lorena Vieira", "Miguel Santana", "Renata Cardoso", "Guilherme Ferreira", "Marina Moreira", "Caio Souza", 
+    "Amanda Costa", "Ruan Ribeiro", "Flávia Silva", "Arthur Rocha", "Elisa Nunes", "Julio Santos", "Nicole Ferreira", 
+    "Rafaela Mendes", "Heitor Martins", "Marcia Souza", "Vitor Lima", "Tainá Araújo", "Igor Alves", "Letícia Pereira", 
+    "Joana Andrade", "Hugo Fernandes", "Aline Duarte", "Otávio Ribeiro", "Cristina Nogueira", "Leandro Batista", "Larissa Teixeira", 
+    "Pablo Matos", "Emilly Carvalho", "Daniela Souza", "Fábio Gomes", "Bruna Martins", "Sandro Costa", "Mirela Ferreira", 
+    "Robson Lima", "Lorraine Vieira", "Patrick Oliveira", "Isabel Fernandes", "Diogo Gonçalves", "Melina Rocha", "Roberto Santos", 
+    "Stephanie Souza", "Alan Nunes", "Clarice Matos", "Vagner Almeida", "Geovana Pereira", "Eduarda Alves", "Otávia Nunes", 
+    "Samuel Silva", "Jéssica Almeida", "Enzo Costa", "Bianca Ribeiro", "Marcela Souza", "Filipe Cardoso", "Sara Martins", 
+    "Victor Araújo", "Amanda Gonçalves", "Manuela Lima", "Murilo Santos", "Raquel Mendes", "Danilo Costa", "Lívia Fernandes"]
     sexos = ["Feminino", "Masculino"]
     signos = ["Áries", "Touro", "Gêmeos", "Câncer", "Leão", "Virgem", "Libra", "Escorpião", "Sagitário", "Capricórnio", "Aquário", "Peixes"]
     estados = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"]
