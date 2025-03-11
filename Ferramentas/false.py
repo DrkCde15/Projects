@@ -2,7 +2,6 @@ import random
 from datetime import datetime, timedelta
 
 def luhn(digits):
-    #Calcula o dígito verificador pelo algoritmo de Luhn
     sum_ = 0
     reverse_digits = digits[::-1]
     for i, d in enumerate(reverse_digits):
@@ -15,17 +14,12 @@ def luhn(digits):
     return (10 - (sum_ % 10)) % 10
 
 def gerar_numero_cartao():
-    # Gerar os primeiros 15 dígitos do cartão de crédito aleatoriamente
     prefixo_cartao = [str(random.randint(0, 9)) for _ in range(15)]
-    # Calcular o dígito verificador com base nos 15 dígitos gerados
     digito_verificador = luhn(prefixo_cartao)
-    # Adicionar o dígito verificador ao número do cartão
     prefixo_cartao.append(str(digito_verificador))
-    # Retornar o cartão no formato correto
     return ''.join(prefixo_cartao)
 
 def formata_cartao(cartao):
-    # Formatando o número do cartão no formato XXXX XXXX XXXX XXXX
     return f"{cartao[:4]} {cartao[4:8]} {cartao[8:12]} {cartao[12:16]}"
 
 def gera_cartoes_em_lote(quantidade):
@@ -71,22 +65,23 @@ def gerar_telefone(estado):
 
 def gerar_dados():
     nomes = [
-    "Rosa Pietra Sophia Fogaca", "João Silva", "Maria Oliveira", "Carlos Souza", "Ana Beatriz Martins", "Lucas Almeida", 
-    "Fernanda Pereira", "Paulo Sérgio Costa", "Mariana Gonçalves", "Gustavo Fernandes", "Clara Mendes", "Ricardo Lima", 
-    "Isabella Ribeiro", "José Barbosa", "Camila Araújo", "Felipe Duarte", "Sofia Carvalho", "Pedro Gonçalves", "Laura Nunes", 
-    "Thiago Matos", "Gabriela Rocha", "Daniel Moreira", "Julia Ferreira", "Vinicius Alves", "Lara Santos", "Matheus Ribeiro", 
-    "Luana Souza", "Henrique Teixeira", "Livia Andrade", "Rodrigo Costa", "Yasmin Almeida", "Eduardo Lima", "Alice Martins", 
-    "Rafael Pereira", "Helena Correia", "André Silva", "Sophia Machado", "Diego Mendes", "Valentina Barbosa", "Gabriel Alves", 
-    "Carolina Rocha", "Bruno Oliveira", "Beatriz Nunes", "Leonardo Azevedo", "Cecilia Fernandes", "Marcelo Almeida", "Clara Gomes", 
-    "Antonio Melo", "Lorena Vieira", "Miguel Santana", "Renata Cardoso", "Guilherme Ferreira", "Marina Moreira", "Caio Souza", 
-    "Amanda Costa", "Ruan Ribeiro", "Flávia Silva", "Arthur Rocha", "Elisa Nunes", "Julio Santos", "Nicole Ferreira", 
-    "Rafaela Mendes", "Heitor Martins", "Marcia Souza", "Vitor Lima", "Tainá Araújo", "Igor Alves", "Letícia Pereira", 
-    "Joana Andrade", "Hugo Fernandes", "Aline Duarte", "Otávio Ribeiro", "Cristina Nogueira", "Leandro Batista", "Larissa Teixeira", 
-    "Pablo Matos", "Emilly Carvalho", "Daniela Souza", "Fábio Gomes", "Bruna Martins", "Sandro Costa", "Mirela Ferreira", 
-    "Robson Lima", "Lorraine Vieira", "Patrick Oliveira", "Isabel Fernandes", "Diogo Gonçalves", "Melina Rocha", "Roberto Santos", 
-    "Stephanie Souza", "Alan Nunes", "Clarice Matos", "Vagner Almeida", "Geovana Pereira", "Eduarda Alves", "Otávia Nunes", 
-    "Samuel Silva", "Jéssica Almeida", "Enzo Costa", "Bianca Ribeiro", "Marcela Souza", "Filipe Cardoso", "Sara Martins", 
-    "Victor Araújo", "Amanda Gonçalves", "Manuela Lima", "Murilo Santos", "Raquel Mendes", "Danilo Costa", "Lívia Fernandes"]
+        "Rosa Pietra Sophia Fogaca", "João Silva", "Maria Oliveira", "Carlos Souza", "Ana Beatriz Martins", "Lucas Almeida",
+        "Fernanda Pereira", "Paulo Sérgio Costa", "Mariana Gonçalves", "Gustavo Fernandes", "Clara Mendes", "Ricardo Lima",
+        "Isabella Ribeiro", "José Barbosa", "Camila Araújo", "Felipe Duarte", "Sofia Carvalho", "Pedro Gonçalves", "Laura Nunes",
+        "Thiago Matos", "Gabriela Rocha", "Daniel Moreira", "Julia Ferreira", "Vinicius Alves", "Lara Santos", "Matheus Ribeiro",
+        "Luana Souza", "Henrique Teixeira", "Livia Andrade", "Rodrigo Costa", "Yasmin Almeida", "Eduardo Lima", "Alice Martins",
+        "Rafael Pereira", "Helena Correia", "André Silva", "Sophia Machado", "Diego Mendes", "Valentina Barbosa", "Gabriel Alves",
+        "Carolina Rocha", "Bruno Oliveira", "Beatriz Nunes", "Leonardo Azevedo", "Cecilia Fernandes", "Marcelo Almeida", "Clara Gomes",
+        "Antonio Melo", "Lorena Vieira", "Miguel Santana", "Renata Cardoso", "Guilherme Ferreira", "Marina Moreira", "Caio Souza",
+        "Amanda Costa", "Ruan Ribeiro", "Flávia Silva", "Arthur Rocha", "Elisa Nunes", "Junior Santos", "Nicole Ferreira",
+        "Rafaela Mendes", "Heitor Martins", "Marcia Souza", "Vitor Lima", "Tainá Araújo", "Igor Alves", "Letícia Pereira",
+        "Joana Andrade", "Hugo Fernandes", "Aline Duarte", "Otávio Ribeiro", "Cristina Nogueira", "Leandro Batista", "Larissa Teixeira",
+        "Pablo Matos", "Emilly Carvalho", "Daniela Souza", "Fábio Gomes", "Bruna Martins", "Sandro Costa", "Mirela Ferreira",
+        "Robson Lima", "Lorraine Vieira", "Patrick Oliveira", "Isabel Fernandes", "Diogo Gonçalves", "Melina Rocha", "Roberto Santos",
+        "Stephanie Souza", "Alan Nunes", "Clarice Matos", "Wagner Almeida", "Geovana Pereira", "Eduarda Alves", "Otávio Nunes",
+        "Samuel Silva", "Jéssica Almeida", "Enzo Costa", "Bianca Ribeiro", "Marcela Souza", "Filipe Cardoso", "Sara Martins",
+        "Victor Araújo", "Amanda Gonçalves", "Manuela Lima", "Murilo Santos", "Raquel Mendes", "Danilo Costa", "Lívia Fernandes"
+    ]
     sexos = ["Feminino", "Masculino"]
     signos = ["Áries", "Touro", "Gêmeos", "Câncer", "Leão", "Virgem", "Libra", "Escorpião", "Sagitário", "Capricórnio", "Aquário", "Peixes"]
     estados = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"]
@@ -120,46 +115,46 @@ def gerar_dados():
         "TO": ["Palmas", "Araguaína"]
     }
     bairros = [
-    "Centro", "Jardim das Flores", "Vila Nova", "Maria Rachel", "Jardim América", "Vila Mariana", "Bela Vista", 
-    "Consolação", "Moema", "Liberdade", "Pinheiros", "Santana", "Tatuapé", "Jardim Paulista", "Jardim Europa", 
-    "Lapa", "Itaim Bibi", "Morumbi", "Campo Belo", "Jabaquara", "Brooklin", "Perdizes", "Vila Olímpia", 
-    "Aclimação", "Cambuci", "Vila Madalena", "Chácara Santo Antônio", "Parque do Carmo", "Sapopemba", "Brás", 
-    "Mooca", "Butantã", "Ipiranga", "São Mateus", "Vila Prudente", "Vila Leopoldina", "Parque São Lucas", "Artur Alvim", 
-    "São Miguel Paulista", "Jardim São Paulo", "Parque Peruche", "Vila Matilde", "Cidade Ademar", "Parque da Mooca", 
-    "Barra Funda", "Vila Formosa", "Jardim São Bento", "Jardim Vila Mariana", "Capão Redondo", "Cidade Tiradentes", 
-    "Pirituba", "Freguesia do Ó", "Jaraguá", "Vila Sônia", "Cangaíba", "Jardim Bonfiglioli", "Ermelino Matarazzo", 
-    "Grajaú", "Interlagos", "Pedreira", "Sacomã", "Tremembé", "Jardim Ângela", "Itaquera", "Vila Carrão", "Vila Ema", 
-    "Cidade Patriarca", "Jardim Anália Franco", "Jardim Panorama", "Água Branca", "Rio Pequeno", "Raposo Tavares", 
-    "Vila Brasilândia", "Ponte Rasa", "Jardim Helena", "Jardim São Luís", "Vila Curuçá", "Vila Medeiros", 
-    "Jardim Avelino", "Parque Novo Mundo", "Cidade Líder", "Jardim Marajoara", "Cidade Dutra", "Vila Guarani", 
-    "Vila Clementino", "Pacaembu", "Chácara Klabin", "Parque Bristol", "Vila Diva", "Parque São Rafael", 
-    "São Domingos", "Vila Carmosina", "Vila Gomes Cardim", "Jardim Vila Galvão", "Jardim Alvorada", "Jardim Esmeralda", 
-    "Vila Matilde", "Parque Santo Antônio", "Vila Moraes", "Vila Invernada", "Vila Califórnia", "Jardim Brasil", 
-    "Jardim Aricanduva", "Parque São Jorge", "Jardim Morumbi", "Chácara Flora", "Vila Ipojuca", "Jardim Olinda"]
-
+        "Centro", "Jardim das Flores", "Vila Nova", "Maria Rachel", "Jardim América", "Vila Mariana", "Bela Vista",
+        "Consolação", "Moema", "Liberdade", "Pinheiros", "Santana", "Tatuapé", "Jardim Paulista", "Jardim Europa",
+        "Lapa", "Itaim Bibi", "Morumbi", "Campo Belo", "Jabaquara", "Brooklin", "Perdizes", "Vila Olímpia",
+        "Aclimação", "Cambuci", "Vila Madalena", "Chácara Santo Antônio", "Parque do Carmo", "Sapopemba", "Brás",
+        "Mooca", "Butantã", "Ipiranga", "São Mateus", "Vila Prudente", "Vila Leopoldina", "Parque São Lucas", "Artur Alvim",
+        "São Miguel Paulista", "Jardim São Paulo", "Parque Peruche", "Vila Matilde", "Cidade Ademar", "Parque da Mooca",
+        "Barra Funda", "Vila Formosa", "Jardim São Bento", "Jardim Vila Mariana", "Capão Redondo", "Cidade Tiradentes",
+        "Pirituba", "Freguesia do Ó", "Jaraguá", "Vila Sônia", "Cangaíba", "Jardim Bonfiglioli", "Ermelino Matarazzo",
+        "Grajaú", "Interlagos", "Pedreira", "Sacomã", "Tremembé", "Jardim Ângela", "Itaquera", "Vila Carrão", "Vila Ema",
+        "Cidade Patriarca", "Jardim Anália Franco", "Jardim Panorama", "Água Branca", "Rio Pequeno", "Raposo Tavares",
+        "Vila Brasilândia", "Ponte Rasa", "Jardim Helena", "Jardim São Luís", "Vila Curuçá", "Vila Medeiros",
+        "Jardim Avelino", "Parque Novo Mundo", "Cidade Líder", "Jardim Marajoara", "Cidade Dutra", "Vila Guarani",
+        "Vila Clementino", "Pacaembu", "Chácara Klabin", "Parque Bristol", "Vila Diva", "Parque São Rafael",
+        "São Domingos", "Vila Carmosina", "Vila Gomes Cardim", "Jardim Vila Galvão", "Jardim Alvorada", "Jardim Esmeralda",
+        "Vila Matilde", "Parque Santo Antônio", "Vila Moraes", "Vila Invernada", "Vila Califórnia", "Jardim Brasil",
+        "Jardim Aricanduva", "Parque São Jorge", "Jardim Morumbi", "Chácara Flora", "Vila Ipojuca", "Jardim Olinda"
+    ]
     enderecos = [
-    "Rua João Patrício de Lima", "Avenida Paulista", "Rua das Flores", "Praça da Sé", "Rua Augusta", "Rua Oscar Freire", 
-    "Avenida Brigadeiro Luís Antônio", "Rua Bela Cintra", "Rua da Consolação", "Rua Vergueiro", "Avenida Faria Lima", 
-    "Avenida Rebouças", "Rua Teodoro Sampaio", "Rua dos Pinheiros", "Avenida Nove de Julho", "Rua Joaquim Floriano", 
-    "Avenida Juscelino Kubitschek", "Rua Bandeira Paulista", "Avenida Ibirapuera", "Rua Domingos de Morais", 
-    "Avenida Santo Amaro", "Rua Clodomiro Amazonas", "Rua Tabapuã", "Avenida Hélio Pellegrino", "Avenida Professor Francisco Morato", 
-    "Avenida Engenheiro Luiz Carlos Berrini", "Avenida Pedroso de Moraes", "Rua Maria Antônia", "Rua Cardoso de Almeida", 
-    "Rua Palestra Itália", "Rua Heitor Penteado", "Rua Lins de Vasconcelos", "Avenida Indianópolis", "Avenida Washington Luís", 
-    "Rua Antonio de Barros", "Rua Cantareira", "Avenida Cruzeiro do Sul", "Rua Voluntários da Pátria", "Rua Alfredo Pujol", 
-    "Avenida Guapira", "Avenida Cruzeiro do Sul", "Rua Celso Garcia", "Rua Silvio Romero", "Rua do Gasômetro", "Rua Taquari", 
-    "Avenida Rudge", "Avenida São João", "Rua Amaral Gurgel", "Rua dos Trilhos", "Avenida Imirim", "Rua Maria Cândida", 
-    "Avenida Itaberaba", "Rua Pio XI", "Avenida Professor Abraão de Morais", "Rua Francisco Morato", "Rua Cotoxó", 
-    "Rua Cayowaa", "Rua Traipu", "Rua Apinajés", "Rua Paulo Franco", "Avenida Jacu-Pêssego", "Rua Aricanduva", 
-    "Avenida Engenheiro Caetano Álvares", "Avenida Marechal Tito", "Rua Padre João Manuel", "Avenida Sumaré", "Rua Pompeu Loureiro", 
-    "Rua Maranhão", "Avenida Diógenes Ribeiro de Lima", "Rua Pascoal Ranieri Mazzilli", "Rua Ministro Godói", "Avenida Pompeia", 
-    "Rua Madre Cabrini", "Avenida República do Líbano", "Rua Harmonia", "Rua Girassol", "Rua Henrique Schaumann", 
-    "Avenida Tiradentes", "Avenida Braz Leme", "Rua Conselheiro Brotero", "Rua Itapura", "Rua Jaboticabal", "Rua Lucrécia Maciel", 
-    "Avenida Dr. Ricardo Jafet", "Rua Alvarenga", "Avenida Corifeu de Azevedo Marques", "Avenida Nossa Senhora do Sabará", 
-    "Rua Olívia Guedes Penteado", "Rua Alagoas", "Rua Capote Valente", "Rua Doutor Homem de Mello", "Rua Diana", 
-    "Rua Votupoca", "Avenida das Nações Unidas", "Rua Pedroso Alvarenga", "Rua Leopoldo Couto de Magalhães", 
-    "Rua João Cachoeira", "Rua Vinte e Cinco de Março", "Rua do Carmo", "Rua Piratininga", "Rua Alfredo Maia", 
-    "Rua Humberto I", "Rua José Maria Lisboa", "Rua Dr. Rafael de Barros", "Rua Rafael de Barros"]
-
+        "Rua João Patrício de Lima", "Avenida Paulista", "Rua das Flores", "Praça da Sé", "Rua Augusta", "Rua Oscar Freire",
+        "Avenida Brigadeiro Luís Antônio", "Rua Bela Cintra", "Rua da Consolação", "Rua Vergueiro", "Avenida Faria Lima",
+        "Avenida Rebouças", "Rua Teodoro Sampaio", "Rua dos Pinheiros", "Avenida Nove de Julho", "Rua Joaquim Floriano",
+        "Avenida Juscelino Kubitschek", "Rua Bandeira Paulista", "Avenida Ibirapuera", "Rua Domingos de Morais",
+        "Avenida Santo Amaro", "Rua Clodomiro Amazonas", "Rua Tabapuã", "Avenida Hélio Pellegrino", "Avenida Professor Francisco Morato",
+        "Avenida Engenheiro Luiz Carlos Berrini", "Avenida Pedroso de Moraes", "Rua Maria Antônia", "Rua Cardoso de Almeida",
+        "Rua Palestra Itália", "Rua Heitor Penteado", "Rua Lins de Vasconcelos", "Avenida Indianópolis", "Avenida Washington Luís",
+        "Rua Antonio de Barros", "Rua Cantareira", "Avenida Cruzeiro do Sul", "Rua Voluntários da Pátria", "Rua Alfredo Pujol",
+        "Avenida Guapira", "Avenida Cruzeiro do Sul", "Rua Celso Garcia", "Rua Silvio Romero", "Rua do Gasômetro", "Rua Taquari",
+        "Avenida Rudge", "Avenida São João", "Rua Amaral Gurgel", "Rua dos Trilhos", "Avenida Imirim", "Rua Maria Cândida",
+        "Avenida Itaberaba", "Rua Pio XI", "Avenida Professor Abraão de Morais", "Rua Francisco Morato", "Rua Cotoxó",
+        "Rua Cayowaa", "Rua Traipu", "Rua Apinajés", "Rua Paulo Franco", "Avenida Jacu-Pêssego", "Rua Aricanduva",
+        "Avenida Engenheiro Caetano Álvares", "Avenida Marechal Tito", "Rua Padre João Manuel", "Avenida Sumaré", "Rua Pompeu Loureiro",
+        "Rua Maranhão", "Avenida Diógenes Ribeiro de Lima", "Rua Pascoal Ranieri Mazzilli", "Rua Ministro Godói", "Avenida Pompeia",
+        "Rua Madre Cabrini", "Avenida República do Líbano", "Rua Harmonia", "Rua Girassol", "Rua Henrique Schaumann",
+        "Avenida Tiradentes", "Avenida Braz Leme", "Rua Conselheiro Brotero", "Rua Itapura", "Rua Jaboticabal", "Rua Lucrécia Maciel",
+        "Avenida Dr. Ricardo Jafet", "Rua Alvarenga", "Avenida Corifeu de Azevedo Marques", "Avenida Nossa Senhora do Sabará",
+        "Rua Olívia Guedes Penteado", "Rua Alagoas", "Rua Capote Valente", "Rua Doutor Homem de Mello", "Rua Diana",
+        "Rua Votupoca", "Avenida das Nações Unidas", "Rua Pedroso Alvarenga", "Rua Leopoldo Couto de Magalhães",
+        "Rua João Cachoeira", "Rua Vinte e Cinco de Março", "Rua do Carmo", "Rua Piratininga", "Rua Alfredo Maia",
+        "Rua Humberto I", "Rua José Maria Lisboa", "Rua Dr. Rafael de Barros", "Rua Rafael de Barros"
+    ]
     tipo_sanguineo = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 
     estado = random.choice(estados)
@@ -168,15 +163,21 @@ def gerar_dados():
     endereco = random.choice(enderecos)
     cep = f"{random.randint(10000, 99999)}-{random.randint(100, 999)}"
 
+    sexo = random.choice(sexos)
+    if sexo == "Masculino":
+        altura = f"1,{random.randint(50, 90)}"
+    else:
+        altura = f"1,{random.randint(50, 70)}"
+
     return {
         "Nome": random.choice(nomes),
         "CPF": gerar_cpf(),
         "RG": gerar_rg(),
         "Data de Nascimento": gerar_data_nascimento(),
-        "Sexo": random.choice(sexos),
+        "Sexo": sexo,
         "Signo": random.choice(signos),
         "Mãe": f"Rosângela {random.choice(['Antônia', 'Maria', 'Clara'])}",
-        "Pai": f"Marcelo {random.choice(['Pedro', 'João', 'Carlos'])} Fogaca",
+        "Pai": f"Marcelo {random.choice(['Pedro', 'João', 'Carlos'])} Silva",  # Corrigido para incluir espaço
         "Email": f"{random.choice(nomes).lower().replace(' ', '.')}@gmail.com",
         "CEP": cep,
         "Endereço": endereco,
@@ -185,13 +186,15 @@ def gerar_dados():
         "Estado": estado,
         "Telefone Fixo": gerar_telefone(estado),
         "Celular": gerar_telefone(estado),
-        "Altura": f"1,{random.randint(50, 99)}",
+        "Altura": altura,
         "Tipo Sanguíneo": random.choice(tipo_sanguineo)
     }
 
 def verificar_bin(bin):
     print(f"Verificando BIN: {bin}")
-    print("Banco: Banco do Brasil" or "Itau" or "Caixa Economica" or "Bradesco")
+    banks = ["Banco do Brasil", "Itau", "Caixa Economica", "Bradesco"]
+    random_bank = random.choice(banks)
+    print(f"Banco: {random_bank}")
     print("País: Brasil")
     print("Tipo de Cartão: Crédito")
 
@@ -206,7 +209,7 @@ def testar_luhn(numero_cartao):
         for d in even_digits:
             checksum += sum(digits_of(d*2))
         return checksum % 10
-    
+
     valido = luhn_checksum(int(numero_cartao)) == 0
     print(f"O número do cartão {numero_cartao} é {'válido' if valido else 'inválido'}.")
 
@@ -220,7 +223,7 @@ def menu():
         print("5. Gerar Cartões em Lote")
         print("6. Sair")
         opcao = input("Opção: ")
-        
+
         if opcao == "1":
             cartao = gerar_numero_cartao()
             print(f"Cartão gerado: {formata_cartao(cartao)}")
