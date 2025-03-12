@@ -219,7 +219,7 @@ def gerar_dados():
         "estado": estado,
         "telefone_fixo": gerar_telefone(estado),
         "celular": gerar_telefone(estado),
-        "altura": f"1,{random.randint(50, 99)}",
+        "altura": f"1,{random.randint(50, 80)}",
         "tipo_sanguíneo": random.choice(tipo_sanguineo)
     }
 
