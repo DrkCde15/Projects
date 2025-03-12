@@ -1,0 +1,7 @@
+o código entra no site da kiwify, cakto, kirvano(plataformas de pagamento)
+
+acessa com vários emails fake
+
+pega os números dos cartões fake integrado com uma API de pagamento
+
+faz as compras com esses cartões nos meus produtos da conta principal
