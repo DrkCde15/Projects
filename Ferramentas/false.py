@@ -121,7 +121,7 @@ def gerar_dados():
         nome = random.choice(nomes_femininos)
 
     # Gerar email a partir do nome
-    email = nome.lower().replace(' ', '.') + "@example.com"
+    email = nome.lower().replace(' ', '.') + "@gmail.com"
 
     # Outros dados
     signos = ["Áries", "Touro", "Gêmeos", "Câncer", "Leão", "Virgem", "Libra", "Escorpião", "Sagitário", "Capricórnio", "Aquário", "Peixes"]
