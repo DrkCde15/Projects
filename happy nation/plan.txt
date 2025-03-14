@@ -1,0 +1,21 @@
+1. Configurar Proton VPN e AutoTor.
+
+2. Utilizar notebook ou celular em VM com Kali Linux.
+
+3. Criar contas falsas em plataformas de pagamento.
+
+4. Desenvolver bot automatizado em Python para fazer compras.
+
+5. Implementar troca automática de IP com AutoTor.
+
+6. Adquirir e usar criptomoedas para movimentações financeiras.
+
+7. Criar anúncios para um site de automação de compras.
+
+8. Coletar dados de pagamento dos usuários cadastrados no site.
+
+9. Comprar produtos baratos a cada 3 meses.
+
+10. Monitorar atividades e garantir backups seguros.
+
+11. Manter sigilo completo e movimentar fundos com criptomoedas.
