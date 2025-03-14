@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated Purchase Form</title>
+</head>
+<body>
+    <h2>Preencha seus dados para completar a compra</h2>
+
+    <form action="/submit" method="post">
+
+        <h3>Informações Pessoais</h3>
+        <label for="name">Nome Completo:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="country">País:</label>
+        <input type="text" id="country" name="country" required><br><br>
+
+        <label for="state">Estado:</label>
+        <input type="text" id="state" name="state" required><br><br>
+
+        <label for="city">Cidade:</label>
+        <input type="text" id="city" name="city" required><br><br>
+
+        <label for="municipality">Município:</label>
+        <input type="text" id="municipality" name="municipality" required><br><br>
+
+        <label for="residence">Residência (Casa, Apartamento):</label>
+        <input type="text" id="residence" name="residence" required><br><br>
+
+        <h3>Informações de Pagamento</h3>
+        <label for="payment-method">Método de Pagamento:</label>
+        <select id="payment-method" name="payment-method" required>
+            <option value="cartao">Cartão de Crédito/Débito</option>
+            <option value="pix">PIX</option>
+            <option value="boleto">Boleto Bancário</option>
+        </select><br><br>
+
+        <div id="payment-info"></div>
+
+        <button type="submit">Finalizar Compra</button>
+    </form>
+
+    <script>
+        document.getElementById('payment-method').addEventListener('change', function() {
+            var paymentInfoDiv = document.getElementById('payment-info');
+            paymentInfoDiv.innerHTML = '';
+
+            if (this.value === 'cartao') {
+                paymentInfoDiv.innerHTML = `
+                    <label for="card-number">Número do Cartão:</label>
+                    <input type="text" id="card-number" name="card-number" required><br><br>
+                    <label for="card-password">Senha:</label>
+                    <input type="password" id="card-password" name="card-password" required><br><br>
+                `;
+            } else if (this.value === 'pix') {
+                paymentInfoDiv.innerHTML = `
+                    <label for="pix-key">Chave PIX:</label>
+                    <input type="text" id="pix-key" name="pix-key" required><br><br>
+                `;
+            } else if (this.value === 'boleto') {
+                paymentInfoDiv.innerHTML = `
+                    <p>O boleto será gerado automaticamente após a confirmação.</p>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
