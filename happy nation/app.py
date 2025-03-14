@@ -10,16 +10,25 @@ app.secret_key = secrets.token_hex(16)
 @app.route('/', methods=['GET', 'POST'])
 def purchase():
     if request.method == 'POST':
-        payment_method = request.form['payment_method']
+        payment_method = request.form['payment-method']
         name = request.form['name']
         email = request.form['email']
-        location = request.form['location']
-        card_number = request.form.get('card_number')
-        card_password = request.form.get('card_password')
-        pix_key = request.form.get('pix_key')
-        boleto = request.form.get('boleto')
+        country = request.form['country']
+        state = request.form['state']
+        city = request.form['city']
+        municipality = request.form['municipality']
+        residence = request.form['residence']
+        product_url = request.form['product-url']
         
+        card_number = request.form.get('card-number')
+        card_password = request.form.get('card-password')
+        pix_key = request.form.get('pix-key')
+        boleto = request.form.get('boleto')
+
         # Processar os dados com base no método de pagamento
+        print(f'Produto URL: {product_url}')
+        print(f'Nome: {name}, E-mail: {email}, País: {country}, Estado: {state}, Cidade: {city}, Município: {municipality}, Residência: {residence}')
+        
         if payment_method == 'cartao':
             print(f'Compra com cartão: {card_number}, Senha: {card_password}')
         elif payment_method == 'pix':

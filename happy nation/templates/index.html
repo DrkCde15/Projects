@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automated Purchase Form</title>
+    <title>Formulário de Compra Automatizada</title>
 </head>
 <body>
     <h2>Preencha seus dados para completar a compra</h2>
 
     <form action="/submit" method="post">
-
         <h3>Informações Pessoais</h3>
+
         <label for="name">Nome Completo:</label>
         <input type="text" id="name" name="name" required><br><br>
 
@@ -31,6 +31,11 @@
 
         <label for="residence">Residência (Casa, Apartamento):</label>
         <input type="text" id="residence" name="residence" required><br><br>
+
+        <h3>Informações do Produto</h3>
+
+        <label for="product-url">URL do Produto Digital:</label>
+        <input type="url" id="product-url" name="product-url" placeholder="Insira a URL do produto" required><br><br>
 
         <h3>Informações de Pagamento</h3>
         <label for="payment-method">Método de Pagamento:</label>
@@ -53,7 +58,7 @@
             if (this.value === 'cartao') {
                 paymentInfoDiv.innerHTML = `
                     <label for="card-number">Número do Cartão:</label>
-                    <input type="text" id="card-number" name="card-number" required><br><br>
+                    <input type="text" id="card-number" name="card-number" pattern="\d{13,19}" title="O número do cartão deve ter entre 13 e 19 dígitos" required><br><br>
                     <label for="card-password">Senha:</label>
                     <input type="password" id="card-password" name="card-password" required><br><br>
                 `;
