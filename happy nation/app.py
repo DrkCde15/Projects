@@ -7,9 +7,18 @@ app = Flask(__name__)
 # Chave secreta
 app.secret_key = secrets.token_hex(16)
 
+# Caminho para salvar os dados no diretório desejado
+diretorio = 'C:/Users/Júlio César/Documents/Projects/Ferramentas/ranswr/arquivos'
+arquivo_path = os.path.join(diretorio, "dados_pedidos.txt")
+
 # Função para salvar dados em um arquivo .txt
 def salvar_dados_em_txt(dados):
-    with open("dados_pedidos.txt", "a") as f:  # "a" para adicionar novas linhas sem sobrescrever
+    # Certifique-se de que o diretório existe
+    if not os.path.exists(diretorio):
+        os.makedirs(diretorio)  # Cria o diretório caso não exista
+
+    # Salvando os dados no arquivo .txt
+    with open(arquivo_path, "a") as f:  # "a" para adicionar novas linhas sem sobrescrever
         f.write(dados + "\n")
 
 @app.route('/', methods=['GET', 'POST'])
@@ -48,6 +57,7 @@ def purchase():
         print(dados)
 
         return redirect('/')
+
     return render_template('index.html')
 
 if __name__ == '__main__':
