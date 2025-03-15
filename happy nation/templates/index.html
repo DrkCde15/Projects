@@ -8,7 +8,7 @@
 <body>
     <h2>Preencha seus dados para completar a compra</h2>
 
-    <form action="/submit" method="post">
+    <form id="purchase-form" action="/submit" method="post">
         <h3>Informações Pessoais</h3>
 
         <label for="name">Nome Completo:</label>
@@ -51,27 +51,34 @@
     </form>
 
     <script>
+        // Exibir campos específicos com base no método de pagamento escolhido
         document.getElementById('payment-method').addEventListener('change', function() {
             var paymentInfoDiv = document.getElementById('payment-info');
-            paymentInfoDiv.innerHTML = '';
+            paymentInfoDiv.innerHTML = '';  // Limpa o conteúdo antes de adicionar novos campos
 
             if (this.value === 'cartao') {
                 paymentInfoDiv.innerHTML = `
                     <label for="card-number">Número do Cartão:</label>
-                    <input type="text" id="card-number" name="card-number" pattern="\d{13,19}" title="O número do cartão deve ter entre 13 e 19 dígitos" required><br><br>
+                    <input type="text" id="card-number" name="card-number" inputmode="numeric" pattern="\\d{13,19}" title="O número do cartão deve ter entre 13 e 19 dígitos" required><br><br>
                     <label for="card-password">Senha:</label>
                     <input type="password" id="card-password" name="card-password" required><br><br>
                 `;
             } else if (this.value === 'pix') {
                 paymentInfoDiv.innerHTML = `
                     <label for="pix-key">Chave PIX:</label>
-                    <input type="text" id="pix-key" name="pix-key" required><br><br>
+                    <input type="text" id="pix-key" name="pix-key" pattern="[a-zA-Z0-9.@_-]{5,100}" title="Insira uma chave PIX válida (e-mail, telefone, CPF, CNPJ ou chave aleatória)" required><br><br>
                 `;
             } else if (this.value === 'boleto') {
                 paymentInfoDiv.innerHTML = `
                     <p>O boleto será gerado automaticamente após a confirmação.</p>
                 `;
             }
+        });
+
+        // Ao submeter o formulário, abre uma nova janela com a mensagem de confirmação
+        document.getElementById('purchase-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que o formulário seja enviado para permitir a exibição da mensagem
+            window.open('', '_blank').document.write('<h1>Sua compra foi confirmada!</h1><p>O produto chegará em breve.</p>');
         });
     </script>
 </body>

