@@ -48,7 +48,7 @@ def purchase():
         print(dados)
 
         return redirect('/')
-    return render_template('purchase_form.html')
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
