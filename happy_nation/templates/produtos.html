@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitrine de Produtos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .produto { display: inline-block; width: 30%; margin: 10px; padding: 10px; border: 1px solid #ccc; }
+        img { width: 100%; height: auto; }
+        .vitrine { display: flex; flex-wrap: wrap; }
+    </style>
+</head>
+<body>
+
+    <h2>Vitrine de Produtos</h2>
+    <div class="vitrine">
+        {% for produto in produtos %}
+            <div class="produto">
+                <img src="{{ produto[2] }}" alt="{{ produto[1] }}"> <!-- Assumindo que produto[2] é a URL da imagem -->
+                <h3>{{ produto[1] }}</h3> <!-- Nome do produto -->
+                <p>Preço: R$ {{ produto[3] }}</p> <!-- Preço do produto -->
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
