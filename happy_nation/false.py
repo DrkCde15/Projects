@@ -97,7 +97,7 @@ def gerar_dados():
     "Rafael Costa", "Tiago Santos", "Alex Ribeiro", "Bruno Mendes", "Carlos Teixeira", "Vítor Gomes", 
     "Samuel Nunes", "Leandro Pereira", "Lucas Gomes", "Danilo Ribeiro", "Felipe Fernandes", "Ricardo Lima", 
     "Pedro Souza", "Gilberto Nunes", "Douglas Ribeiro", "Mateus Ribeiro", "Rafael Gomes", "Alan Santos"
-]
+    ]
     
     nomes_femininos = ["Rosa Pietra Sophia Fogaca", "Maria Oliveira", "Ana Beatriz Martins", 
         "Fernanda Pereira", "Mariana Gonçalves", "Clara Mendes", "Isabella Ribeiro", "Camila Araújo", "Sofia Carvalho", "Laura Nunes",
@@ -109,7 +109,8 @@ def gerar_dados():
         "Lorraine Vieira", "Isabel Fernandes", "Melina Rocha",
         "Stephanie Souza", "Clarice Matos", "Geovana Pereira", "Eduarda Alves",
         "Jéssica Almeida", "Bianca Ribeiro", "Marcela Souza", "Sara Martins",
-        "Amanda Gonçalves", "Manuela Lima", "Raquel Mendes", "Lívia Fernandes"]
+        "Amanda Gonçalves", "Manuela Lima", "Raquel Mendes", "Lívia Fernandes"
+        ]
 
     # Escolher aleatoriamente entre masculino e feminino
     sexo = random.choice(["Masculino", "Feminino"])
@@ -170,7 +171,8 @@ def gerar_dados():
         "Vila Clementino", "Pacaembu", "Chácara Klabin", "Parque Bristol", "Vila Diva", "Parque São Rafael",
         "São Domingos", "Vila Carmosina", "Vila Gomes Cardim", "Jardim Vila Galvão", "Jardim Alvorada", "Jardim Esmeralda",
         "Vila Matilde", "Parque Santo Antônio", "Vila Moraes", "Vila Invernada", "Vila Califórnia", "Jardim Brasil",
-        "Jardim Aricanduva", "Parque São Jorge", "Jardim Morumbi", "Chácara Flora", "Vila Ipojuca", "Jardim Olinda"]
+        "Jardim Aricanduva", "Parque São Jorge", "Jardim Morumbi", "Chácara Flora", "Vila Ipojuca", "Jardim Olinda"
+        ]
     
     enderecos = ["Rua João Patrício de Lima", "Avenida Paulista", "Rua das Flores", "Praça da Sé", "Rua Augusta", "Rua Oscar Freire",
         "Avenida Brigadeiro Luís Antônio", "Rua Bela Cintra", "Rua da Consolação", "Rua Vergueiro", "Avenida Faria Lima",
@@ -192,7 +194,8 @@ def gerar_dados():
         "Rua Olívia Guedes Penteado", "Rua Alagoas", "Rua Capote Valente", "Rua Doutor Homem de Mello", "Rua Diana",
         "Rua Votupoca", "Avenida das Nações Unidas", "Rua Pedroso Alvarenga", "Rua Leopoldo Couto de Magalhães",
         "Rua João Cachoeira", "Rua Vinte e Cinco de Março", "Rua do Carmo", "Rua Piratininga", "Rua Alfredo Maia",
-        "Rua Humberto I", "Rua José Maria Lisboa", "Rua Dr. Rafael de Barros", "Rua Rafael de Barros"]
+        "Rua Humberto I", "Rua José Maria Lisboa", "Rua Dr. Rafael de Barros", "Rua Rafael de Barros"
+        ]
     
     tipo_sanguineo = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
 
