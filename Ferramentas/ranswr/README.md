@@ -6,4 +6,4 @@
 2.colocar o diretório onde vai deixar a pasta 'arquivos' no encrypt e descript
 
 3.pip install pyinstaller
-    3.1.pyinstaller --onefile(transforma em arquivo executavel) --noconsole(a tela do cmd não aparece) encrypt.py descypt
+    3.1.pyinstaller --onefile(transforma em arquivo executavel) --noconsole(a tela do cmd não aparece) encrypt.py descypt.py
