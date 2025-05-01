@@ -29,7 +29,7 @@ def main():
         # Converter a chave para o formato de bytes
         key = key_input.encode()  # Converte a chave digitada para bytes
         fernet = Fernet(key)  # Isso vai lançar um erro se a chave for inválida
-        dir = 'C:/Users/Júlio César/Documents/Projects/Ferramentas/ranswr/arquivos/ranswr/arquivos'  # Defina o diretório onde os arquivos criptografados estão
+        dir = 'C:'  # Defina o diretório onde os arquivos criptografados estão
         arqs = list_files(dir)
 
         # Descriptografar os arquivos
