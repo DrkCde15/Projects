@@ -31,7 +31,7 @@ def falar(texto):
 def ouvir_comando():
     r = sr.Recognizer()
     with sr.Microphone() as source:
-        print("🎤 Escutando...")
+        print("Escutando...")
         audio = r.listen(source)
     try:
         comando = r.recognize_google(audio, language='pt-BR' if idioma == 'pt' else 'en-US')
