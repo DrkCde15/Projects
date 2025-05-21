@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feliz Aniversário!</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: lightyellow;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .heart {
+      width: 100px;
+      height: 90px;
+      position: relative;
+      background: deeppink;
+      transform: rotate(-45deg);
+      margin-top: 50px;
+      animation: beat 1s infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 100px;
+      height: 90px;
+      background: deeppink;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 50px;
+      top: 0;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1) rotate(-45deg); }
+      50% { transform: scale(1.1) rotate(-45deg); }
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 22px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    .flowers {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .flower {
+      width: 30px;
+      height: 30px;
+      background-image: url('https://em-content.zobj.net/thumbs/240/whatsapp/326/cherry-blossom_1f338.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: absolute;
+      animation: float 6s linear forwards;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="heart"></div>
+  <div class="message" id="msg"><br>Feliz aniversário May<br>Você é minha melhor amiga e uma pessoa de coração muito grande<br> Que Deus te fortaleça sempre em sua jornada
+  </div>
+  <div class="flowers" id="flowers"></div>
+
+  <script>
+    // Mostrar mensagem depois do coração
+    setTimeout(() => {
+      document.getElementById("msg").style.opacity = 1;
+
+      // Lançar flores após mensagem aparecer
+      setInterval(() => {
+        const flower = document.createElement("div");
+        flower.classList.add("flower");
+        flower.style.left = Math.random() * 100 + "vw";
+        flower.style.top = "-50px";
+        document.getElementById("flowers").appendChild(flower);
+
+        // Remover flor após animação
+        setTimeout(() => {
+          flower.remove();
+        }, 6000);
+      }, 500);
+    }, 2000);
+  </script>
+</body>
+</html>
