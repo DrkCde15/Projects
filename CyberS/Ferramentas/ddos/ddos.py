@@ -54,8 +54,8 @@ def generate_headers():
 
 # Entrada do usuário
 target_url = input("🛡️ Digite a URL do alvo (com http:// ou https://): ").strip()
-threads = int(input("🔧 Quantidade de threads: "))
-proxy_file = input("📁 Caminho do arquivo de proxies (.txt): ").strip()
+threads = int(input("Quantidade de threads: "))
+proxy_file = input("Caminho do arquivo de proxies (.txt): ").strip()
 
 # Leitura de proxies
 def load_proxies(path):
