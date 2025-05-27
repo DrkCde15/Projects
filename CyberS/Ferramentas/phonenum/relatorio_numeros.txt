@@ -1,0 +1,14 @@
+[2025-05-27 10:28:33]
+Número: +5511991216669
+País / Região: São Paulo
+Operadora: Claro
+Fuso Horário: America/Sao_Paulo
+Válido: Sim
+-----------------------------
+[2025-05-27 10:29:43]
+Número: +5511942939270
+País / Região: São Paulo
+Operadora: Desconhecida
+Fuso Horário: America/Sao_Paulo
+Válido: Sim
+-----------------------------
