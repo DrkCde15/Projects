@@ -1,5 +1,7 @@
 import phonenumbers
-from phonenumbers import geocoder, carrier, timezone
+from phonenumbers import geocoder
+from phonenumbers import carrier
+from phonenumbers import timezone
 from datetime import datetime
 
 def analisar_numero(numero_str):
