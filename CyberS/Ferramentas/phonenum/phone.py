@@ -1,7 +1,6 @@
 import phonenumbers
-from phonenumbers import geocoder
-from phonenumbers import carrier
-from phonenumbers import timezone
+from phonenumbers import geocoder, carrier, timezone
+from geopy.geocoders import Nominatim
 from datetime import datetime
 
 def analisar_numero(numero_str):
@@ -13,12 +12,21 @@ def analisar_numero(numero_str):
             fuso_horario = timezone.time_zones_for_number(numero)
             horario = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+            # Usando geopy para pegar latitude e longitude
+            geolocator = Nominatim(user_agent="numero-localizador")
+            coordenadas = geolocator.geocode(localizacao)
+
+            latitude = coordenadas.latitude if coordenadas else "Não encontrado"
+            longitude = coordenadas.longitude if coordenadas else "Não encontrado"
+
             resultado = (
                 f"[{horario}]\n"
                 f"Número: {numero_str}\n"
                 f"País / Região: {localizacao}\n"
                 f"Operadora: {operadora if operadora else 'Desconhecida'}\n"
                 f"Fuso Horário: {', '.join(fuso_horario)}\n"
+                f"Latitude: {latitude}\n"
+                f"Longitude: {longitude}\n"
                 f"Válido: Sim\n"
                 "-----------------------------\n"
             )
@@ -35,6 +43,10 @@ def analisar_numero(numero_str):
 
     except phonenumbers.NumberParseException as e:
         print(f"\nErro ao analisar o número: {e}\n")
+
+    except Exception as e:
+        print(f"\nErro ao obter coordenadas: {e}\n")
+
 
 print("=== LOCALIZADOR DE NÚMEROS ===")
 print("Digite 'sair' para encerrar.\n")
