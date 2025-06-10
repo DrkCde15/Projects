@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feliz Aniversário!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f197bb; /* Rosa claro */
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      color: #333;
+      overflow: hidden;
+    }
+
+    .container {
+      background-color: #ffffffdd;
+      padding: 60px 50px;
+      border-radius: 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      max-width: 700px;
+      min-height: 500px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #e91e63;
+      margin-bottom: 20px;
+      animation: aparecer 1.5s ease-in-out;
+    }
+
+    p {
+      font-size: 1.3rem;
+      color: #444;
+      margin-bottom: 30px;
+      animation: aparecer 2s ease-in-out;
+    }
+
+    .baloes {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .balao {
+      width: 60px;
+      height: 80px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      position: relative;
+      animation: flutuar 2s infinite ease-in-out;
+    }
+
+    .balao1 { background-color: #ff8a80; animation-delay: 0s; }
+    .balao2 { background-color: #ffd180; animation-delay: 0.3s; }
+    .balao3 { background-color: #80d8ff; animation-delay: 0.6s; }
+
+    .balao::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #666;
+      transform: translateX(-50%);
+    }
+
+    @keyframes flutuar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Feliz Aniversário Mari🎂</h1>
+    <p>Hoje é um dia especial! Que seu novo ciclo seja repleto de saúde, amor, conquistas e muitos sorrisos!</p>
+    
+    <div class="baloes">
+      <div class="balao balao1"></div>
+      <div class="balao balao2"></div>
+      <div class="balao balao3"></div>
+    </div>
+
+    <footer>
+      <br>AS: Com amor e carinho, Juka e Papo 💖<br>
+    </footer>
+  </div>
+</body>
+</html>
