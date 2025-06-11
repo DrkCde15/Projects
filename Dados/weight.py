@@ -12,7 +12,7 @@ elif 50 <= peso <= 60:
 elif 60 <= peso <= 100:
     print("Delicia")
     
-elif 80 < peso <= 130:
+elif 100 < peso <= 200:
     print("Gostosa")
     
 else:
