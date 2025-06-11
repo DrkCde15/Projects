@@ -2,10 +2,6 @@ import pandas as pd
 
 #carregando dataset usando o ';' como separador
 data =pd.read_csv('./datasets/GasPricesinBrazil_2004-2019.csv', sep=';')
-<<<<<<< HEAD
-
-=======
->>>>>>> 5571ba1b7382383e9e6b2e752ce27fd908ce5223
 print(data)
 
 #selecionando 5 primeiras linhas
@@ -19,8 +15,4 @@ print(type(data))
 
 #acessar as dimesoes(numero de linhas e de colunas) da tabela
 print(data.shape)
-<<<<<<< HEAD
-=======
-
->>>>>>> 5571ba1b7382383e9e6b2e752ce27fd908ce5223
 print(f"O dataset possui {data.shape[0]} linhas e {data.shape[1]} colunas")
