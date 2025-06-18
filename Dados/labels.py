@@ -3,7 +3,7 @@ import pandas as pd
 #carregando dataset usando o ';' como separador
 data =pd.read_csv('./datasets/GasPricesinBrazil_2004-2019.csv', sep=';')
 
-print(data.head(6))
+print(data.head(6)) 
 
 avaliacao = pd.DataFrame( #criando um dataframe
     {
