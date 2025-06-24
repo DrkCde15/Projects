@@ -1,7 +1,7 @@
 import pandas as pd
 import tkinter as tk
 from tkinter import messagebox
-import os  # import padrão pra manipular arquivos
+import os
 
 def calcular_ir(rendimento_anual, dependentes=0, gastos_saude=0, gastos_educacao=0, inss=0):
     deducao_dependente = 189.59 * 12  # por dependente ao ano

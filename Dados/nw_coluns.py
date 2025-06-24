@@ -16,3 +16,9 @@ print(new_colun3)
 print(data.head(6))
 
 print(data.copy("new_colun3")) #criando uma copia das colunas
+
+del data['Unnamed: 0'] #deletando a coluna Unnamed: 0
+del data['COLUNM'] #deletando a coluna COLUNM
+del data['COLUNM_2'] #deletando a coluna COLUNM
+del data['COLUNM_3'] #deletando a coluna COLUNM
+print(data.head(6))
