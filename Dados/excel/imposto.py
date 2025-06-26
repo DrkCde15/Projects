@@ -1,33 +1,47 @@
-import pandas as pd
 import tkinter as tk
 from tkinter import messagebox
+import pandas as pd
 import os
 
-def calcular_ir(rendimento_anual, dependentes=0, gastos_saude=0, gastos_educacao=0, inss=0):
-    deducao_dependente = 189.59 * 12  # por dependente ao ano
-    deducao_total = (dependentes * deducao_dependente +
-                     gastos_saude + gastos_educacao + inss)
+def calcular_ir(rendimento_anual, dependentes=0, gastos_saude=0, gastos_educacao=0, inss=0, pgb_l=0):
+    deducao_dependente = 189.59 * 12
+    deducao_educacao = min(gastos_educacao, 3561.50)
+    deducao_pgb_l = min(pgb_l, rendimento_anual * 0.12)
 
-    base_calculo = rendimento_anual - deducao_total
+    total_deducoes = (
+        inss + gastos_saude + deducao_educacao +
+        (dependentes * deducao_dependente) + deducao_pgb_l
+    )
 
-    if base_calculo <= 22560.00:
+    base_calculo = rendimento_anual - total_deducoes
+    base_mensal = base_calculo / 12
+
+    # Tabela IRPF 2025
+    if base_mensal <= 2259.20:
         aliquota = 0.0
         deducao = 0.0
-    elif base_calculo <= 33792.00:
+    elif base_mensal <= 2826.65:
         aliquota = 0.075
-        deducao = 1692.00
-    elif base_calculo <= 45000.00:
+        deducao = 169.44
+    elif base_mensal <= 3751.05:
         aliquota = 0.15
-        deducao = 3816.00
-    elif base_calculo <= 55944.00:
+        deducao = 381.44
+    elif base_mensal <= 4664.68:
         aliquota = 0.225
-        deducao = 6924.00
+        deducao = 662.77
     else:
         aliquota = 0.275
-        deducao = 9504.00
+        deducao = 896.00
 
-    imposto = (base_calculo * aliquota) - deducao
-    return max(imposto, 0.0)
+    ir_mensal = max(0, (base_mensal * aliquota) - deducao)
+    ir_anual = ir_mensal * 12
+
+    return {
+        "Base de cálculo (R$)": round(base_calculo, 2),
+        "Alíquota (%)": f"{aliquota * 100:.1f}",
+        "IR Mensal (R$)": round(ir_mensal, 2),
+        "IR Anual (R$)": round(ir_anual, 2)
+    }
 
 def gerar_relatorio():
     try:
@@ -36,18 +50,24 @@ def gerar_relatorio():
         gastos_saude = float(entry_saude.get())
         gastos_educacao = float(entry_educacao.get())
         inss = float(entry_inss.get())
+        pgb_l = float(entry_pgbl.get())
 
         rendimento_anual = rendimento_mensal * 12
-        imposto = calcular_ir(rendimento_anual, dependentes, gastos_saude, gastos_educacao, inss)
+
+        resultado = calcular_ir(
+            rendimento_anual, dependentes, gastos_saude,
+            gastos_educacao, inss, pgb_l
+        )
 
         dados = {
             "Rendimento Mensal (R$)": [rendimento_mensal],
             "Rendimento Anual (R$)": [rendimento_anual],
             "Dependentes": [dependentes],
-            "Gastos com Saúde (R$)": [gastos_saude],
-            "Gastos com Educação (R$)": [gastos_educacao],
+            "Saúde (R$)": [gastos_saude],
+            "Educação (R$)": [gastos_educacao],
             "INSS (R$)": [inss],
-            "IR Devido (R$)": [round(imposto, 2)]
+            "PGBL (R$)": [pgb_l],
+            **resultado
         }
 
         df_novo = pd.DataFrame(dados)
@@ -60,39 +80,44 @@ def gerar_relatorio():
 
         df_atualizado.to_excel("relatorio_irpf.xlsx", index=False)
 
-        messagebox.showinfo("Resultado", f"IR Devido: R$ {round(imposto, 2)}")
-        messagebox.showinfo("Arquivo Excel", "Arquivo 'relatorio_irpf.xlsx' atualizado com sucesso.")
+        detalhes = "\n".join([f"{k}: {v}" for k, v in resultado.items()])
+        messagebox.showinfo("Resultado do IRPF", detalhes)
+        messagebox.showinfo("Excel", "Relatório atualizado com sucesso!")
 
     except ValueError:
-        messagebox.showerror("Erro", "Por favor, preencha todos os campos corretamente.")
+        messagebox.showerror("Erro", "Preencha todos os campos corretamente.")
 
-# Interface com Tkinter
+# =============== GUI ===============
 janela = tk.Tk()
-janela.title("Calculadora de IRPF")
-janela.geometry("400x430")
+janela.title("Calculadora de IRPF 2025")
+janela.geometry("400x520")
 janela.resizable(False, False)
 
 largura_entry = 30
 
-tk.Label(janela, text="Rendimento Mensal (R$):").pack(pady=5)
-entry_rendimento = tk.Entry(janela, width=largura_entry)
-entry_rendimento.pack()
+campos = [
+    ("Rendimento Mensal (R$):", "rendimento"),
+    ("Nº de Dependentes:", "dependentes"),
+    ("Gastos com Saúde (R$):", "saude"),
+    ("Gastos com Educação (R$):", "educacao"),
+    ("INSS Pago (R$):", "inss"),
+    ("PGBL Pago (R$):", "pgbl"),
+]
 
-tk.Label(janela, text="Número de Dependentes:").pack(pady=5)
-entry_dependentes = tk.Entry(janela, width=largura_entry)
-entry_dependentes.pack()
+entry_dict = {}
 
-tk.Label(janela, text="Gastos com Saúde (anual R$):").pack(pady=5)
-entry_saude = tk.Entry(janela, width=largura_entry)
-entry_saude.pack()
+for label_text, key in campos:
+    tk.Label(janela, text=label_text).pack(pady=5)
+    entry = tk.Entry(janela, width=largura_entry)
+    entry.pack()
+    entry_dict[key] = entry
 
-tk.Label(janela, text="Gastos com Educação (anual R$):").pack(pady=5)
-entry_educacao = tk.Entry(janela, width=largura_entry)
-entry_educacao.pack()
-
-tk.Label(janela, text="Total pago de INSS (anual R$):").pack(pady=5)
-entry_inss = tk.Entry(janela, width=largura_entry)
-entry_inss.pack()
+entry_rendimento = entry_dict["rendimento"]
+entry_dependentes = entry_dict["dependentes"]
+entry_saude = entry_dict["saude"]
+entry_educacao = entry_dict["educacao"]
+entry_inss = entry_dict["inss"]
+entry_pgbl = entry_dict["pgbl"]
 
 tk.Button(janela, text="Calcular IR", command=gerar_relatorio, bg="green", fg="white").pack(pady=20)
 
