@@ -2,7 +2,7 @@ import pandas as pd
 
 #carregando dataset usando o ';' como separador
 data =pd.read_csv('./datasets/GasPricesinBrazil_2004-2019.csv', sep=';')
-#print(data.head(5))
+print(data.head(5))
 
 new_colun = data['COLUNM'] = "Gostosa" #criando uma nova coluna e atribuindo um valor
 print(new_colun) #mostrando a nova coluna
