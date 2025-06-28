@@ -3,14 +3,15 @@
 from langchain_groq import ChatGroq
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
-from langchain_community.document_loaders import WebBaseLoader, YoutubeLoader, PyPDFLoader
+from langchain_community.document_loaders import WebBaseLoader, YoutubeLoader, PyPDFLoader, TextLoader, CSVLoader, UnstructuredFileLoader, UnstructuredWordDocumentLoader, JSONLoader
 import os
 from dotenv import load_dotenv
+import platform
+import subprocess
 import traceback
 
 # ======== API KEY ========
 load_dotenv()  # Carrega variáveis de ambiente
-
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 if not GROQ_API_KEY:
@@ -29,16 +30,65 @@ except Exception:
 
 # ======== FUNÇÕES DE CARREGAMENTO =========
 def carrega_sites():
-    url = input('Digite a URL do site: ')
+    url = input('Digite a URL do site: ').strip()
     return WebBaseLoader(url).load()
 
 def carrega_pdf():
-    caminho = input('Digite o caminho do PDF: ')
+    caminho = carregar_arquivo('Digite o caminho do PDF (ex: C:/Users/Usuario/Documents/arquivo.pdf): ')
     return PyPDFLoader(caminho).load()
 
 def carrega_video():
-    link = input('Digite o link do video: ')
+    link = input('Digite o link do vídeo do YouTube: ').strip()
     return YoutubeLoader.from_youtube_url(link, language=['pt']).load()
+
+def carregar_arquivo(mensagem_prompt="Digite o caminho do arquivo: "):
+    while True:
+        caminho = input(mensagem_prompt).strip()
+        caminho = caminho.replace("\\", "/")
+        if not os.path.isfile(caminho):
+            print("Arquivo não encontrado! Tente novamente.")
+        else:
+            return caminho
+
+def carrega_arquivo_generico(caminho):
+    extensao = os.path.splitext(caminho)[1].lower()
+
+    try:
+        if extensao == ".pdf":
+            return PyPDFLoader(caminho).load()
+        elif extensao == ".txt":
+            return TextLoader(caminho, encoding="utf-8").load()
+        elif extensao == ".csv":
+            return CSVLoader(caminho).load()
+        elif extensao == ".json":
+            return JSONLoader(caminho, jq_schema=".").load()
+        elif extensao in [".docx", ".doc"]:
+            return UnstructuredWordDocumentLoader(caminho).load()
+        else:
+            # Tenta com Unstructured como fallback
+            return UnstructuredFileLoader(caminho).load()
+    except Exception as e:
+        print(f"Erro ao carregar o arquivo: {e}")
+        return []
+
+def abrir_arquivo(caminho):
+    if not os.path.isfile(caminho):
+        print("Arquivo não encontrado para abrir.")
+        return False
+    
+    sistema = platform.system()
+    try:
+        if sistema == "Windows":
+            os.startfile(caminho)
+        elif sistema == "Darwin":  # macOS
+            subprocess.run(["open", caminho])
+        else:  # Linux e outros
+            subprocess.run(["xdg-open", caminho])
+        print(f"Abrindo arquivo: {caminho}")
+        return True
+    except Exception as e:
+        print(f"Erro ao tentar abrir o arquivo: {e}")
+        return False
 
 # ======== GERAR RESPOSTA COM CONTEXTO =========
 def responde_com_contexto(lista_docs, pergunta):
@@ -66,12 +116,13 @@ menu_texto = ''' Selecione a opção desejada:
 2 - Pesquisa na Web
 3 - Leitor de Vídeos do YouTube
 4 - Leitor de PDFs
+5 - Acessar arquivos do sistema
 '''
 
 mensagens = []
 
 while True:
-    selecao = input(menu_texto)
+    selecao = input(menu_texto).strip()
     if selecao == '1':
         mensagens.append(SystemMessage(content="Você é a SAAM, um assistente profissional que vai diretamente ao ponto, que é fofa, muito educada, muito inteligente, e me chama de Amor todas as vezes."))
         try:
@@ -123,7 +174,23 @@ while True:
             print(f'Resposta: {resposta}')
         break
 
-    else:
-        print('Opção inválida. Digite um dos valores acima.')
+    elif selecao == '5':
+        mensagens.append(SystemMessage(content='Você é um assistente amigável e informativo. Use o conteúdo do arquivo carregado para responder.'))
+        caminho_arquivo = carregar_arquivo('Digite o caminho do arquivo: ')
+        abrir_arquivo(caminho_arquivo)
+
+    documentos = carrega_arquivo_generico(caminho_arquivo)
+    if not documentos:
+        print("Erro ao carregar o conteúdo. Verifique se o tipo de arquivo é suportado.")
+        break
+
+    while True:
+        pergunta = input("Usuário (Arquivo): ")
+        if pergunta.strip().lower() in ['x', 'exit']:
+            break
+        resposta = responde_com_contexto(documentos, pergunta)
+        print(f'Resposta: {resposta}')
+    break
+
 
 print('\nMuito obrigado por utilizar a SAAM. Até logo, Amor!')
