@@ -1,4 +1,4 @@
-# S.A.A.M. – Serviço de Assistência com Aprendizagem de Máquina
+# S.A.R.A.A – Sistema Avançado de Respostas e Asistências Automatizadas
 
 from langchain_groq import ChatGroq
 from langchain.prompts import ChatPromptTemplate
@@ -22,7 +22,7 @@ os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 # ======== INICIALIZAÇÃO =========
 try:
     chat = ChatGroq(model='llama3-70b-8192')
-    print("SAAM inicializada com sucesso!")
+    print("SARAA inicializada com sucesso!")
 except Exception:
     print("Erro ao inicializar a IA:")
     traceback.print_exc()
@@ -109,10 +109,10 @@ def resposta_do_bot(lista_mensagens):
     return chain.invoke({}).content
 
 # ======== MENU PRINCIPAL =========
-print('Bem-vindo ao ChatBot da S.A.A.M.! (Digite x para sair a qualquer momento.)\n')
+print('Bem-vindo ao ChatBot da S.A.R.A.A! (Digite x para sair a qualquer momento.)\n')
 
 menu_texto = ''' Selecione a opção desejada:
-1 - Conversa com a SAAM
+1 - Conversa com a SARAA
 2 - Pesquisa na Web
 3 - Leitor de Vídeos do YouTube
 4 - Leitor de PDFs
@@ -124,7 +124,7 @@ mensagens = []
 while True:
     selecao = input(menu_texto).strip()
     if selecao == '1':
-        mensagens.append(SystemMessage(content="Você é a SAAM, um assistente profissional que vai diretamente ao ponto, que é fofa, muito educada, muito inteligente, e me chama de Amor todas as vezes."))
+        mensagens.append(SystemMessage(content="Você é a SARAA, um assistente profissional que vai diretamente ao ponto, que é fofa, muito educada, muito inteligente, e me chama de Amor todas as vezes."))
         try:
             while True:
                 pergunta = input('Usuário: ')
@@ -193,4 +193,4 @@ while True:
     break
 
 
-print('\nMuito obrigado por utilizar a SAAM. Até logo, Amor!')
+print('\nMuito obrigado por utilizar a SARAA. Até logo, Amor!')
