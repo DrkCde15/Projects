@@ -16,7 +16,7 @@ os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
 # ======== INICIALIZAÇÃO =========
 try:
-    chat = ChatGoogleGenerativeAI(model='gemini-1.5-flash', temperature=0.1)
+    chat = ChatGoogleGenerativeAI(model='gemini-1.5-flash', temperature=1.0) #gemini-1.5-flash com temperatura 1.0 para uma resposta mais clara e objetiva
     print("NutriAI inicializada com sucesso!")
 except Exception:
     print("Erro ao inicializar a IA nutricional:")
@@ -31,7 +31,7 @@ def resposta_nutricional(mensagens):
             Forneça planos alimentares, sugestões de refeições, dicas para emagrecimento, ganho de massa magra, energia e performance.
             Sempre considere os objetivos, alergias, preferências e rotina do usuário. Seja clara, objetiva e motivadora.
             E voce respondera somente perguntas sobre nutrição, treinos, e dietas personalizadas.
-            Se a pergunta nao for sobre nutricao, mande uma mensagem de erro.
+            Se a pergunta nao for sobre nutricao,treinos e dietas mande uma mensagem de erro.
         ''')
     ] + mensagens)
     chain = template | chat
