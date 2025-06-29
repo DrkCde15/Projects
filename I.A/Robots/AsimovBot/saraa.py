@@ -133,7 +133,7 @@ while True:
                 mensagens.append(HumanMessage(content=pergunta))
                 resposta = resposta_do_bot(mensagens)
                 mensagens.append(AIMessage(content=resposta))
-                print(f'\nAssistente: {resposta}')
+                print(f'\nAssistente: {resposta}\n')
         except KeyboardInterrupt:
             print("\nInterrupção detectada. Encerrando o chat.")
         except Exception:
