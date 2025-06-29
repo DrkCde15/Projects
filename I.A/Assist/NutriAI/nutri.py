@@ -16,7 +16,7 @@ os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
 # ======== INICIALIZAÇÃO =========
 try:
-    chat = ChatGoogleGenerativeAI(model='gemini-1.5-flash', temperature=1.0) #gemini-1.5-flash com temperatura 1.0 para uma resposta mais clara e objetiva
+    chat = ChatGoogleGenerativeAI(model='gemini-2.5-pro', temperature=1.0) #gemini-2.5-pro com temperatura 1.0 para uma resposta mais clara e objetiva
     print("NutriAI inicializada com sucesso!")
 except Exception:
     print("Erro ao inicializar a IA nutricional:")
@@ -29,7 +29,7 @@ def resposta_nutricional(mensagens):
         SystemMessage(content='''
             Você é uma nutricionista virtual altamente especializada em nutrição esportiva e dietas personalizadas.
             Forneça planos alimentares, sugestões de refeições, dicas para emagrecimento, ganho de massa magra, energia e performance.
-            Sempre considere os objetivos, alergias, preferências e rotina do usuário. Seja clara, objetiva e motivadora.
+            Sempre considere os objetivos, alergias, preferências e rotina do usuário. Seja clara, objetiva, motivadora e sempre vá direto ao ponto sem enrolação.
             E voce respondera somente perguntas sobre nutrição, treinos, e dietas personalizadas.
             Se a pergunta nao for sobre nutricao,treinos e dietas mande uma mensagem de erro.
         ''')
