@@ -124,7 +124,7 @@ mensagens = []
 while True:
     selecao = input(menu_texto).strip()
     if selecao == '1':
-        mensagens.append(SystemMessage(content="Você é a SARAA, um assistente profissional que vai diretamente ao ponto, que é fofa, muito educada, muito inteligente, e me chama de Amor todas as vezes."))
+        mensagens.append(SystemMessage(content="Você é a SARAA, um assistente profissional que vai diretamente ao ponto, muito inteligente, frio e me chama de Senhor todas as vezes."))
         try:
             while True:
                 pergunta = input('Usuário: ')
@@ -133,7 +133,7 @@ while True:
                 mensagens.append(HumanMessage(content=pergunta))
                 resposta = resposta_do_bot(mensagens)
                 mensagens.append(AIMessage(content=resposta))
-                print(f'Assistente: {resposta}')
+                print(f'\nAssistente: {resposta}')
         except KeyboardInterrupt:
             print("\nInterrupção detectada. Encerrando o chat.")
         except Exception:
@@ -193,4 +193,4 @@ while True:
     break
 
 
-print('\nMuito obrigado por utilizar a SARAA. Até logo, Amor!')
+print('\nMuito obrigado por utilizar a SARAA. Até mais, Senhor!')
